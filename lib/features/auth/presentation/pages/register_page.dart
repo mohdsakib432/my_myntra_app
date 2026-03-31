@@ -7,14 +7,14 @@ import '../bloc/auth_bloc/auth_bloc.dart';
 import '../bloc/auth_bloc/auth_event.dart';
 import '../bloc/auth_bloc/auth_state.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(title: const Text("Register")),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticated) {
@@ -44,41 +44,36 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomTextField(
-                    controller: emailController,
-                    hintText: 'Email',
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomTextField(
-                    controller: passwordController,
-                    hintText: 'Password',
-                  ),
+                CustomTextField(controller: emailController, hintText: 'Email'),
+                const SizedBox(height: 10),
+                CustomTextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  hintText: 'Password',
                 ),
                 const SizedBox(height: 20),
+
                 state is AuthLoading
                     ? const CircularProgressIndicator()
                     : CustomButton(
                         onPressed: () {
                           context.read<AuthBloc>().add(
-                            LoginEvent(
+                            RegisterEvent(
                               emailController.text,
                               passwordController.text,
                             ),
                           );
                         },
-                        text: 'Login',
+                        text: 'Register',
                       ),
+
+                const SizedBox(height: 10),
 
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.register);
+                    Navigator.pushNamed(context, AppRoutes.login);
                   },
-                  child: const Text("Create Account"),
+                  child: const Text("Already have account? Login"),
                 ),
               ],
             ),

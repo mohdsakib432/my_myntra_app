@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_myntra_app/core/routes/app_routes.dart';
 import 'package:my_myntra_app/core/routes/route_generator.dart';
+import 'package:my_myntra_app/features/auth/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:my_myntra_app/features/auth/presentation/bloc/auth_bloc/auth_event.dart';
 import 'package:my_myntra_app/features/auth/presentation/bloc/product/theme/theme_bloc.dart';
 import 'package:my_myntra_app/features/auth/presentation/bloc/product/theme/theme_state.dart';
 import 'package:my_myntra_app/injection_container.dart' as di;
@@ -9,9 +11,17 @@ import 'core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.init(); // 🔥 REQUIRED
+  await di.init();
 
-  runApp(BlocProvider(create: (_) => ThemeBloc(), child: const MyApp()));
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => di.sl<ThemeBloc>()),
+        BlocProvider(create: (_) => di.sl<AuthBloc>()..add(AutoLoginEvent())),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

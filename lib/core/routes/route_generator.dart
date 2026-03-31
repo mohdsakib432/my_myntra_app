@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_myntra_app/features/auth/presentation/pages/homepage.dart';
 import 'package:my_myntra_app/features/auth/presentation/pages/loginpage.dart';
 import 'package:my_myntra_app/features/auth/presentation/pages/product_page.dart';
+import 'package:my_myntra_app/features/auth/presentation/pages/register_page.dart';
 import 'package:my_myntra_app/features/auth/presentation/pages/splashscreen.dart';
 
 import 'app_routes.dart';
@@ -20,6 +21,9 @@ class RouteGenerator {
 
       case AppRoutes.product:
         return MaterialPageRoute(builder: (_) => ProductPage());
+
+      case AppRoutes.register:
+        return MaterialPageRoute(builder: (_) => const RegisterPage());
 
       default:
         return _errorRoute();

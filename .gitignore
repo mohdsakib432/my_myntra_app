@@ -5,6 +5,25 @@
 *.swp
 .DS_Store
 .atom/
+# Flutter
+.dart_tool/
+.packages
+.pub/
+build/
+
+# iOS
+ios/Pods/
+ios/Podfile.lock
+
+# macOS
+macos/Pods/
+
+# Android
+android/.gradle/
+android/app/build/
+
+# VSCode
+.vscode/
 .build/
 .buildlog/
 .history
@@ -43,3 +62,24 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+# Flutter
+.packages
+.pub/
+build/
+
+# iOS
+ios/Pods/
+ios/Podfile.lock
+
+# macOS
+macos/Pods/
+
+# Android
+android/.gradle/
+android/app/build/
+
+# VSCode
+.vscode/
+
+# Misc
+.DS_Store

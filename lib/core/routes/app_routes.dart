@@ -3,6 +3,7 @@ class AppRoutes {
   static const String home = '/home';
   static const String login = '/login';
   static const String product = '/product';
+  static const String register = '/register';
 }
 
 // Navigator.pushNamed(context, AppRoutes.home);

@@ -1,13 +1,20 @@
 class ApiRoutes {
-  // Base
-  static const String baseUrl = 'http://10.0.2.2:3000';
+  static const bool isProduction = false;
+
+  static String get baseUrl {
+    if (isProduction) {
+      return 'https://yourapi.com';
+    }
+
+    // 🔥 Use same IP for all local testing
+    return 'http://10.174.111.19:3000';
+  }
 
   // Auth
-  static const String login = '$baseUrl/auth/login';
+  static String get login => '$baseUrl/login';
 
   // Products
-  static const String products = '$baseUrl/products';
-  // static String productById(int id) => '$baseUrl/products/$id';
+  static String get products => '$baseUrl/products';
 
   // Search
   static String searchProduct(String query) =>
